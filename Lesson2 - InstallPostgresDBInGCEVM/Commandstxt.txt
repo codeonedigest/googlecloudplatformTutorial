@@ -1,0 +1,35 @@
+Install Postgres DB
+ 
+//to create link
+sudo apt install -y postgresql-common sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+ 
+
+//to install pg db
+sudo apt install postgresql
+ 
+
+//to open psql editor for postgres db
+sudo -u postgres psql postgres
+ 
+
+//to change password of postgres user
+ALTER USER postgres with password ‘postgres’;
+
+
+//add in postgresql.conf to allow connection from all hosts
+Vi  /etc/postgresql/12/mainpostgresql.conf/postgresql.conf
+listen_addresses = '*'
+
+
+//add in pg_hba.conf to accept connection from all IPs
+Vi  /etc/postgresql/12/mainpostgresql.conf/pg_hba.conf
+host    all             all             0.0.0.0/0            md5
+
+
+//To restart check status of service
+sudo systemctl status postgresql.service
+sudo systemctl restart postgresql.service
+
+
+//To test connect 
+sudo apt install postgresql-client psql --host 34.82.90.169--username postgres --password  postgres --dbname postgres
